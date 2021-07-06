@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/gdbus.dir/gdbus/generate/GDbusCarPlay.c.o CMakeFiles/gdbus.dir/gdbus/CarPlayInterface.c.o CMakeFiles/gdbus.dir/main.c.o -o gdbus  -lglib-2.0 -lgio-2.0 -lgobject-2.0 

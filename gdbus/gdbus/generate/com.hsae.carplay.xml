@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+        name          Code in D-Bus   Data Type in glib    Data Type in libdbus-C++
+        BYTE          ‘y’             guchar               unsigned char
+        BOOLEAN       ‘b’             gboolean             bool
+        INT16         ‘n’             gint16               signed short
+        UINT16        ‘q’             guint16              unsigned short
+        INT32         ‘i’             gint                 int
+        UINT32        ‘u’             guint                unsigned int
+        INT64         ‘x’             gint64               signed long long
+        UINT64        ‘t’             guint64              unsigned long long
+        DOUBLE        ‘d’             gdouble              double
+        STRING        ‘s’             const gchar *        std::string
+        OBJECT_PATH   ‘o’             const gchar *        DBus::Path : public std::string
+        UNIX_FD       ‘h’             GVariant *           int
+        SIGNATURE     ‘g’             const gchar *        DBus::Signature : public std::string
+        STRUCT        ‘(‘ and ‘)’     Gvariant             DBus::Struct<>
+        ARRAY         ‘a’             Gvariant             std::vector<>
+        VARIANT       ‘v’             Gvariant             DBus::Variant
+        DICT_ENTRY  ‘{’ and ‘}’       Gvariant             When it is used together with ‘a’,
+                    (Only appear                           it is represented by std::map<>
+                    after ‘a’)
+-->
+<node name="/com/hsae/carplay">
+
+    <!-- ======================================================================================================= -->
+    <!--  AirPlay interface                                                                                      -->
+    <!-- ======================================================================================================= -->
+    <interface name="com.hsae.airplay">
+
+        <!-- server to client -->
+        <signal name="handleSessionCreated">
+
+        </signal>
+        <signal name="handleSessionStarted">
+
+        </signal>
+        <signal name="handleSessionFinalized">
+
+        </signal>
+        <signal name="handleSessionModesChanged">
+            <arg name="screen" type="i" />
+            <arg name="permScreen" type="i" />
+            <arg name="audio" type="i" />
+            <arg name="permAudio" type="i" />
+            <arg name="speechEntity" type="i" />
+            <arg name="speechMode" type="i" />
+            <arg name="phoneCall" type="i" />
+            <arg name="turnByTurn" type="i" />
+        </signal>
+        <signal name="handleSessionRequestUi">
+
+        </signal>
+        <signal name="handleSessionDuckAudio">
+            <arg name="durationSecs" type="d" />
+            <arg name="volume" type="d" />
+        </signal>
+        <signal name="handleSessionUnduckAudio">
+            <arg name="durationSecs" type="d" />
+            <arg name="volume" type="d" />
+        </signal>
+        <signal name="handleSessionControlDisableBluetooth">
+            <arg name="address" type="s" />
+        </signal>
+        <signal name="handleScreenStreamStart">
+
+        </signal>
+        <signal name="handleScreenStreamStop">
+
+        </signal>
+        <signal name="handleAudioStreamStart">
+
+        </signal>
+        <signal name="handleAudioStreamStop">
+
+        </signal>
+
+        <!-- client to server -->
+        <method name="sendChangeModes">
+            <arg name="screenBorrowId" type="s" direction="in" />
+            <arg name="screenType" type="i" direction="in" />
+            <arg name="screenPriority" type="i" direction="in" />
+            <arg name="screenTake" type="i" direction="in" />
+            <arg name="screenBorrow" type="i" direction="in" />
+
+            <arg name="audioBorrowId" type="s" direction="in" />
+            <arg name="audioType" type="i" direction="in" />
+            <arg name="audioPriority" type="i" direction="in" />
+            <arg name="audioTake" type="i" direction="in" />
+            <arg name="audioBorrow" type="i" direction="in" />
+
+            <arg name="phone" type="i" direction="in" />
+            <arg name="speech" type="i" direction="in" />
+            <arg name="turnByTurn" type="i" direction="in" />
+        </method>
+        <method name="sendChangeResourceMode">
+            <arg name="borrowID" type="s" direction="in" />
+            <arg name="resourceId" type="i" direction="in" />
+            <arg name="type" type="i" direction="in" />
+            <arg name="priority" type="i" direction="in" />
+            <arg name="takeConstraint" type="i" direction="in" />
+            <arg name="borrowConstraint" type="i" direction="in" />
+        </method>
+        <method name="sendChangeAppState">
+            <arg name="phone" type="i" direction="in" />
+            <arg name="speech" type="i" direction="in" />
+            <arg name="turnByTurn" type="i" direction="in" />
+        </method>
+        <method name="sendRequestUi">
+
+        </method>
+        <method name="sendSetNightMode">
+            <arg name="nightMode" type="i" direction="in" />
+        </method>
+        <method name="sendRequestSiriAction">
+            <arg name="action" type="i" direction="in" />
+        </method>
+        <method name="sendTouchScreenUpdate">
+            <arg name="press" type="b" direction="in" />
+            <arg name="x" type="q" direction="in" />
+            <arg name="y" type="q" direction="in" />
+        </method>
+
+    </interface>
+
+    <!-- ======================================================================================================= -->
+    <!--  iAP2 interface                                                                                         -->
+    <!-- ======================================================================================================= -->
+    <interface name="com.hsae.iap2">
+        <!-- server to client -->
+        <signal name="handleCallStateUpdate">
+
+        </signal>
+
+        <!-- client to server -->
+        <method name="sendStartCallStateUpdates">
+
+        </method>
+        <method name="sendStopCallStateUpdates">
+
+        </method>
+        <method name="sendSetup">
+
+        </method>
+    </interface>
+
+</node>

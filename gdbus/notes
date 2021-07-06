@@ -1,0 +1,27 @@
+
+D-Bus method call completion functions
+
+D-Bus signal emissions functions
+
+D-Bus method calls
+
+Code for interface com.hsae.airplay
+
+/home/guts/program/clion-2021.1/bin/cmake/linux/bin/cmake --build /home/guts/modules/android/CLionProjects/gdbus/cmake-build-debug --target gdbus -- -j 3
+
+gdbus-codegen --generate-c-code=GDbusCarPlay --interface-prefix=com.hsae com.hsae.carplay.xml
+
+======
+run
+======
+su
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/dbus/session_bus_help"
+/usr/bin/dbus-daemon --session --address=unix:path=/run/dbus/session_bus_help &
+
+dbus-send --session --print-reply --type=method_call --dest=com.hsae.airplay /com/hsae/carplay com.hsae.airplay.sendChangeModes string:'back' int32:1 int32:1 int32:1 int32:1 string:'audio' int32:1 int32:1 int32:1 int32:1 int32:1 int32:1 int32:1
+dbus-send --session --print-reply --type=method_call --dest=com.hsae.airplay /com/hsae/carplay com.hsae.airplay.sendSetNightMode int32:0
+dbus-send --session --print-reply --type=method_call --dest=com.hsae.airplay /com/hsae/carplay com.hsae.airplay.sendTouchScreenUpdate boolean:false uint16:1 uint16:2
+
+dbus-send --session --print-reply --type=method_call --dest=com.hsae.iap2 /com/hsae/carplay com.hsae.iap2.sendStartCallStateUpdates
+
+dbus-monitor --session "type='signal', interface='com.apple.carplay.server'" &
